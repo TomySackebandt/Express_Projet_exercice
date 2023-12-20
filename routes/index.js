@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -37,18 +38,31 @@ router.get('/chapter/:chap_nb', function(req,res,next){
 })
 
 router.get('/download', function (req, res) {
-  var options = {
-    root: __dirname+ '/../public',
-    headers: {
-      'x-timestamp': Date.now(),
-      'x-sent': true
-    }
-  }
-  var fileName = 'file.pdf';
-  res.sendFile(fileName, options, function (err) {
-      if (err) {
-          next(err);
+  session = req.session
+  txt_content = ""
+
+  var date_now = new Date().toISOString().replace(/T/, '_').replace(/\..+/, '')
+
+  if(session.name){txt_content=session.name};
+  var filename = __dirname+"/../public/"+date_now+".txt"
+  var writeStream = fs.createWriteStream(filename);
+  writeStream.write("Bonjour "+txt_content+" !\n");
+  writeStream.write(date_now);
+  writeStream.end(function (err){
+    var options = {
+      root: __dirname+'/../public',
+      headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
       }
+    }
+    filename = filename.split('/').at(-1)
+    // var fileName = 'file.pdf';
+    res.sendFile(filename, options, function (err) {
+        if (err) {
+          console.log(err);
+        }
+    });
   });
 });
 
