@@ -1,0 +1,18 @@
+<nav>
+    <div class="container-md rounded">
+        <ul class="rounded">
+            <li><a href="/"><i class="bi bi-house-door-fill"></i> Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact"><i class="bi bi-person-lines-fill"></i> Contact</a></li>
+            <li><a href="/chapter/1"><i class="bi bi-book-half"></i> Chapitre</a></li>
+            <!-- Lien random -->
+            <li><a href=<%- "/"+(Math.random() + 1).toString(36).substring(7) %> >404</a></li>
+            <!-- Gestion du button login et logout -->
+            <% if(!admin) {%>
+                <li style="float:right"><a href="/users/login"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+                <% } else{%>
+                    <li style="float:right"><a href="/users/logout"><i class="bi bi-box-arrow-in-left"></i> logout</a></li>
+                    <% } %>
+        </ul>   
+    </div>
+</nav>
