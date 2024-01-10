@@ -7,6 +7,7 @@ import logger from 'morgan';
 import { indexRouter } from './routes/index.js';
 import { usersRouter } from './routes/users.js';
 import { chatRouter } from './routes/chat.js';
+import { apiRestRouter } from './routes/api_rest.js';
 
 import session from 'express-session';
 import { createServer } from 'node:http';
@@ -33,6 +34,7 @@ app.use(express.static('./public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/chat', chatRouter);
+app.use('/api_rest', apiRestRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
