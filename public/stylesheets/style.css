@@ -31,3 +31,11 @@ li a:hover:not(.active) {
 .active {
   background-color: #04AA6D;
 }
+
+.chat {
+  display: grid;
+  width: 100%;
+  grid-gap: 0.6rem;
+  max-width: 40rem;
+  background-color: #d2cdcd;
+}

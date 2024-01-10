@@ -6,8 +6,9 @@
 
 import { app } from '../serveur.js';
 import debug from 'debug';
+import { time } from 'node:console';
 import http from 'node:http'
-
+import { Server } from "socket.io";
 /**
  * Get port from environment and store in Express.
  */
@@ -20,6 +21,20 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+let io = new Server(server)
+
+io.on('connection', (socket) =>{
+  
+  socket.on("SERVER_MSG",(user={name: "anonymous"}) => {
+    socket.emit("SERVER_MSG", {message: "connected : "+user.name, user_name: "System"});
+  })
+
+  socket.on("MSG", (msg)=>{
+    socket.broadcast.emit("MSG", msg);
+  })
+})
+
 
 /**
  * Listen on provided port, on all network interfaces.
