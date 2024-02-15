@@ -1,0 +1,6 @@
+{
+    "twinny.disableServerChecks": true,
+    "editor.tabCompletion": "on",
+    "diffEditor.codeLens": true,
+    "MutableAI.upsell": true
+}

@@ -7,6 +7,8 @@
             <li><a href="/chapter/1"><i class="bi bi-book-half"></i> Chapitre</a></li>
             <!-- Lien random -->
             <li><a href=<%- "/"+(Math.random() + 1).toString(36).substring(7) %> >404</a></li>
+            <!-- on vas dans le chat  -->
+            <li><a href="/chat/"><i class="bi bi-chat-dots-fill"></i></i> Chat</a></li>
             <!-- Gestion du button login et logout -->
             <% if(!admin) {%>
                 <li style="float:right"><a href="/users/login"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>

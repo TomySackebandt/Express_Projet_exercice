@@ -1,0 +1,74 @@
+<%- include("./commun_part/head.ejs") -%>
+  <center><h1><%= title %></h1></center>
+  <p>Welcome to <%= title %></p>
+  <ul id="message_list" class="chat"></ul>
+  <form id="chat_form">
+    <input class="neum-in" type="text" id="text" name="text">
+    <button type="submit" class="button-56" style="background: gray;">
+      Send
+    </button>
+  </form>
+
+  <md-outlined-button>Back</md-outlined-button>
+  <md-filled-button>Next</md-filled-button>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const user_name = prompt("Your name", "Anonymous") || "Anonymous";
+    //connect to socket
+    var socket = io();
+    //envoie du nom au server
+    socket.emit("SERVER_MSG",{name: user_name});
+
+    // send message
+    document.getElementById("chat_form").addEventListener("submit",(event) => {
+      event.preventDefault(); // Prevent the form submission
+      let text = document.getElementById('text').value;
+      socket.emit("MSG", {text: text, user_name: user_name});
+      document.getElementById('text').value = "" //delete text input
+      new_msg_list("own_message", {text: text, time: Date(), user_name: user_name})
+    });
+
+    //listen message room
+    socket.on("MSG", (msg) => {
+      console.log(msg.user_name);
+      new_msg_list("message", {text: msg.text, time: msg.time, user_name: msg.user_name})
+    });
+
+    //listen system room
+    socket.on("SERVER_MSG", (msg) => {
+      new_msg_list("system", {text: msg.message, user_name: msg.user_name})
+    });
+
+    function new_msg_list(type, msg){
+      console.log(msg)
+      //create element in the list
+      new_li = document.createElement("li");
+      //add text
+      new_li.textContent = msg.text;
+      if( type == "system" ){
+        new_li.style.cssText = "font-size: large; color: red;"
+      }else if( type == "message" )
+      {
+        new_li.style.cssText = "font-size: medium;"
+      }else if( type == "own_message"){
+        new_li.style.cssText = "font-size: medium; color: grey;"
+      }
+      
+      //create the top in the new element
+      message_top = document.createElement("p");
+      message_top.style.cssText = "font-size: small;"
+      message_top.textContent = msg.time
+      new_li.appendChild(message_top);
+
+      //ajout du nom de l'utilisateur
+      name_user = document.createElement("p");
+      name_user.style.cssText = "font-size: large;font-weight: bold;"
+      name_user.textContent = msg.user_name
+
+      
+      new_li.appendChild(name_user);
+      //add time
+      document.getElementById('message_list').appendChild(new_li);
+    }
+  </script>
+<%- include("./commun_part/foot.ejs") -%>

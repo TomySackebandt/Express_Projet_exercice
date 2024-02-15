@@ -10,3 +10,8 @@ Pour lancé le projet:
     npm install
     npm start
 ```
+
+todo
+- [] scroll la fenetre en bas
+- [] pour valider attention pensser a empécher le <form> de se validé
+- [] c'est httpServer qui doit listen
