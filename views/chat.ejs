@@ -3,11 +3,14 @@
   <p>Welcome to <%= title %></p>
   <ul id="message_list" class="chat"></ul>
   <form id="chat_form">
-    <input type="text" id="text" name="text">
-    <button type="submit" class="btn btn-default" style="background: gray;">
+    <input class="neum-in" type="text" id="text" name="text">
+    <button type="submit" class="button-56" style="background: gray;">
       Send
     </button>
   </form>
+
+  <md-outlined-button>Back</md-outlined-button>
+  <md-filled-button>Next</md-filled-button>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     const user_name = prompt("Your name", "Anonymous") || "Anonymous";

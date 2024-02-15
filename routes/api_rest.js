@@ -8,14 +8,14 @@ var router = express.Router();
 
 /* GET lists artistes. */
 router.get('/artists', async (req, res, next) => {
-
+    
     //récupération de tout les artistes
     const allArtiste = await prisma.artiste.findMany()
     //retour json
     res.json({ artiste: allArtiste });
 });
 
-/* GET lists artistes. */
+/* GET lists styles. */
 router.get('/styles', async (req, res, next) => {
 
     //récupération de tout les artistes
@@ -51,7 +51,7 @@ router.post('/artists', async (req, res, next) => {
 });
 
 /* PATCH update artists. */
-router.patch('/artiste', async (req, res, next) => {
+router.patch('/artists', async (req, res, next) => {
     var body = req.body
 
     //verification si les info demandé son bien envoyer
@@ -80,7 +80,7 @@ router.patch('/artiste', async (req, res, next) => {
 });
 
 /* DELETE artiste. */
-router.delete('/artiste/:id', async (req, res, next) => {
+router.delete('/artists/:id', async (req, res, next) => {
     var artiste_id = Number(req.params.id);
       //verification si les info demandé son bien envoyer
 
@@ -100,7 +100,7 @@ router.delete('/artiste/:id', async (req, res, next) => {
 });
 
 /* GET info artistes. */
-router.get('/artist/:id', async (req, res, next) => {
+router.get('/artists/:id', async (req, res, next) => {
     let id_artiste = Number(req.params.id);
 
     try {
