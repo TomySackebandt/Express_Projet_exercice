@@ -2,12 +2,15 @@
 const typeDefs = `
   type Query {
     artistes: [Artiste!]!,
-    styles(id: ID!): Style!
+    styles(id: ID!): Style!,
+    concerts: [Concert!]!,
+    villes: [Ville!]!,
   },
   type Artiste {
       IdArtiste: ID!,
       pseudo: String,
-      idStyle: [Style!]!,
+      idStyle: Style!,
+      styles: [Style!]!,
   },
   type Style {
     idStyle: ID!,

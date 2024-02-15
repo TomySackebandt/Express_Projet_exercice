@@ -14,11 +14,11 @@ const root = {
       }
     )
   },
-  concert: () => {
-    return prisma.concert.findMany()
+  concerts: () => {
+    return prisma.concert.findMany();
   },
-  ville: () => {
-    return prisma.ville.findMany()
+  villes: () => {
+    return prisma.ville.findMany();
   }
 }
 

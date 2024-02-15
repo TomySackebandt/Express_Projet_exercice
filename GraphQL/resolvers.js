@@ -12,10 +12,16 @@ const resolvers = {
           idStyle: parseInt(args.id)
         }
       });
+    },
+    concerts: () => {
+      return prisma.concert.findMany();
+    },
+    villes: () => {
+      return prisma.ville.findMany();
     }
   },
   Artiste: {
-    idStyle: (parent) => {
+    styles: (parent) => {
       return prisma.style.findMany({
         where: {
           idStyle: parent.idStyle
