@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-var root = {
+const root = {
   artistes: () => {
     return prisma.artiste.findMany()
   },

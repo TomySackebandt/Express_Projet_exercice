@@ -31,8 +31,8 @@ import { buildSchema } from "graphql";
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-import resolvers from "./GraphQL/resolvers.js";
-import typeDefs from "./GraphQL/typeDefinition.js";
+import resolvers from "./GraphQL/resolvers.js";//les resolver dans ce fichier
+import typeDefs from "./GraphQL/typeDefinition.js";//la definition des types
 import root from "./GraphQL/root.js";
 
 const schema = makeExecutableSchema({
