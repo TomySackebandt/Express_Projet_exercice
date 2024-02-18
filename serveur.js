@@ -1,19 +1,18 @@
+//Lib
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import { makeExecutableSchema } from 'graphql-tools';
+import session from 'express-session';
 
+//Router
 import { indexRouter } from './routes/index.js';
 import { usersRouter } from './routes/users.js';
 import { chatRouter } from './routes/chat.js';
 import { apiRestRouter } from './routes/api_rest.js';
 import { graphqlRouter } from './routes/graphql.js';
-
-import { makeExecutableSchema } from 'graphql-tools';
-import merge from 'lodash';
-
-import session from 'express-session';
 
 var app = express();
 
@@ -25,14 +24,10 @@ app.use(session({
 }));
 //body parser
 
-//graphql
+// import graphql
 import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
-
-import resolvers from "./GraphQL/resolvers.js";
-import typeDefs from "./GraphQL/typeDefinition.js";
+import resolvers from "./GraphQL/resolvers.js";//les resolver dans ce fichier
+import typeDefs from "./GraphQL/typeDefinition.js";//la definition des types
 import root from "./GraphQL/root.js";
 
 const schema = makeExecutableSchema({
@@ -59,6 +54,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('./public'));
 
+// Difinition of the different routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/chat', chatRouter);

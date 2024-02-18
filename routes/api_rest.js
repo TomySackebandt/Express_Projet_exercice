@@ -63,7 +63,7 @@ router.patch('/artists', async (req, res, next) => {
                 },
                 data: {
                     pseudo: body.pseudo,
-                    idStyle: body.idStyle
+                    idStyle: body.idStyle()
                 },
             })
             //retour json

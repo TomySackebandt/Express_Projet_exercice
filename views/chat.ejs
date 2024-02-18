@@ -4,13 +4,10 @@
   <ul id="message_list" class="chat"></ul>
   <form id="chat_form">
     <input class="neum-in" type="text" id="text" name="text">
-    <button type="submit" class="button-56" style="background: gray;">
+    <button type="submit" class="button btn" style="background: gray;">
       Send
     </button>
   </form>
-
-  <md-outlined-button>Back</md-outlined-button>
-  <md-filled-button>Next</md-filled-button>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     const user_name = prompt("Your name", "Anonymous") || "Anonymous";
@@ -64,7 +61,6 @@
       name_user = document.createElement("p");
       name_user.style.cssText = "font-size: large;font-weight: bold;"
       name_user.textContent = msg.user_name
-
       
       new_li.appendChild(name_user);
       //add time

@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-var root = {
+const root = {
   artistes: () => {
     return prisma.artiste.findMany()
   },
@@ -14,11 +14,11 @@ var root = {
       }
     )
   },
-  concert: () => {
-    return prisma.concert.findMany()
+  concerts: () => {
+    return prisma.concert.findMany();
   },
-  ville: () => {
-    return prisma.ville.findMany()
+  villes: () => {
+    return prisma.ville.findMany();
   }
 }
 
