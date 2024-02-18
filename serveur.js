@@ -1,7 +1,6 @@
 //Lib
 import createError from 'http-errors';
 import express from 'express';
-import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { makeExecutableSchema } from 'graphql-tools';
@@ -14,7 +13,37 @@ import { chatRouter } from './routes/chat.js';
 import { apiRestRouter } from './routes/api_rest.js';
 import { graphqlRouter } from './routes/graphql.js';
 
+//Swagger-ui
+import swaggerUi  from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Your API Title',
+      version: '1.0.0',
+      description: 'Your API description',
+    },
+    tags: [
+      {
+        name: 'artiste',
+        description: "Toute les routes pour la gestion d'artiste"
+      },
+      {
+        name: 'style',
+        description: "Toute les routes pour la gestion des style"
+      }
+    ]
+  },
+  apis: ['./routes/*.js'], // Replace with the path to your route files
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+
 var app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //session middleware
 app.use(session({
