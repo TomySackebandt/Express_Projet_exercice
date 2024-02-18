@@ -21,6 +21,8 @@
     "morgan": "~1.9.1",
     "nodemon": "^3.0.2",
     "prisma": "5.7.1",
-    "socket.io": "4.7.2"
+    "socket.io": "4.7.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "5.0.0"
   }
 }
