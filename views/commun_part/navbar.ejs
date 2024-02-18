@@ -9,6 +9,10 @@
             <li><a href=<%- "/"+(Math.random() + 1).toString(36).substring(7) %> >404</a></li>
             <!-- on vas dans le chat  -->
             <li><a href="/chat/"><i class="bi bi-chat-dots-fill"></i></i> Chat</a></li>
+            <!-- lien vers l'swagger -->
+            <li><a href="/api-docs/"><i class="bi bi-book-half"></i></i> Swagger</a></li>
+            <!-- lien vers le graphql -->
+            <li><a href="/graphql/"><i class="bi bi-bounding-box-circles"></i></i> GraphQL</a></li>
             <!-- Gestion du button login et logout -->
             <% if(!admin) {%>
                 <li style="float:right"><a href="/users/login"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>

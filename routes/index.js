@@ -1,7 +1,12 @@
 import express from 'express';
 var router = express.Router();
 import fs from 'node:fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'node:path'
 import session from 'express-session';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -40,7 +45,7 @@ router.get('/chapter/:chap_nb', function(req,res,next){
 
 router.get('/download', function (req, res) {
   var sessions = req.session
-  txt_content = ""
+  let txt_content = ""
 
   var date_now = new Date().toISOString().replace(/T/, '_').replace(/\..+/, '')
 
